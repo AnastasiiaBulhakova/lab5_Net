@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace lab5
@@ -13,7 +12,10 @@ namespace lab5
         private readonly IFileLoader _fileLoader;
         private readonly string _filePath;
 
+        // Публічна колекція для відображення в UI або роботи з даними
         public ObservableCollection<Product> Products { get; }
+
+        // Приватна колекція для зберігання всіх даних
         private List<Product> _allProducts;
 
         public ProductCatalog(IFileSaver fileSaver, IFileLoader fileLoader, string filePath)
@@ -21,40 +23,47 @@ namespace lab5
             _fileSaver = fileSaver;
             _fileLoader = fileLoader;
             _filePath = filePath;
+
             Products = new ObservableCollection<Product>();
             _allProducts = new List<Product>();
         }
 
+        // Додавання продукту
         public void AddProduct(Product product)
         {
             Products.Add(product);
             _allProducts.Add(product);
         }
 
+        // Видалення продукту
         public void DeleteProduct(Product product)
         {
             Products.Remove(product);
             _allProducts.Remove(product);
         }
 
+        // Сортування за кількістю
         public void SortByQuantity()
         {
-            var sorted = new List<Product>(Products);
-            sorted.Sort(); // використовує IComparable (кількість)
-            UpdateVisibleCollection(sorted);
+            var sortedProducts = new List<Product>(_allProducts);
+            sortedProducts.Sort((x, y) => x.Quantity.CompareTo(y.Quantity));
+            UpdateVisibleCollection(sortedProducts);
         }
 
-        public void FilterByQuantity(int threshold)
+        // Фільтрація за кількістю менше заданого значення
+        public void FilterByQuantity(int maxQuantity)
         {
-            var filtered = _allProducts.Where(p => p.Quantity < threshold).ToList();
+            var filtered = _allProducts.Where(p => p.Quantity < maxQuantity).ToList();
             UpdateVisibleCollection(filtered);
         }
 
+        // Скидання фільтру — повернення всіх продуктів
         public void ResetFilter()
         {
             UpdateVisibleCollection(_allProducts);
         }
 
+        // Оновлення публічної колекції
         private void UpdateVisibleCollection(List<Product> newList)
         {
             Products.Clear();
@@ -62,17 +71,19 @@ namespace lab5
                 Products.Add(p);
         }
 
+        // Збереження у файл
         public async Task SaveAsync()
         {
             await _fileSaver.SaveAsync(_filePath, _allProducts);
         }
 
+        // Завантаження з файлу
         public async Task LoadAsync()
         {
-            var loaded = await _fileLoader.LoadAsync<Product>(_filePath);
-            if (loaded != null)
+            var loadedProducts = await _fileLoader.LoadAsync<Product>(_filePath);
+            if (loadedProducts != null)
             {
-                _allProducts = loaded;
+                _allProducts = loadedProducts;
                 UpdateVisibleCollection(_allProducts);
             }
         }

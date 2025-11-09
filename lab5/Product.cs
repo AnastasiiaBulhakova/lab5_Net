@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace lab5
 {
-    public class Product : IComparable<Product>
+    public class Product
     {
         private string type;
         private double price;
@@ -65,11 +65,11 @@ namespace lab5
             Quantity = quantity;
         }
 
-        // Для IComparable — порівняння за кількістю
+        // Для IComparable — порівняння за видом
         public int CompareTo(Product other)
         {
             if (other == null) return 1;
-            return Quantity.CompareTo(other.Quantity);
+            return string.Compare(this.Type, other.Type, StringComparison.OrdinalIgnoreCase);
         }
 
         public override string ToString()

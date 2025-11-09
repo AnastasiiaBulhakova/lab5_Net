@@ -10,7 +10,8 @@ namespace lab5
     {
         public int Compare(Product x, Product y)
         {
-            return x.Price.CompareTo(y.Price);
+            if (x == null || y == null) return 0;
+            return x.Quantity.CompareTo(y.Quantity);
         }
     }
 }
