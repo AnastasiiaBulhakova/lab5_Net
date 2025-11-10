@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,7 +14,7 @@ namespace lab5
         private readonly string _filePath;
 
         // Публічна колекція для відображення в UI або роботи з даними
-        public ObservableCollection<Product> Products { get; }
+        public BindingList<Product> Products { get; }
 
         // Приватна колекція для зберігання всіх даних
         private List<Product> _allProducts;
@@ -24,7 +25,7 @@ namespace lab5
             _fileLoader = fileLoader;
             _filePath = filePath;
 
-            Products = new ObservableCollection<Product>();
+            Products = new BindingList<Product>();
             _allProducts = new List<Product>();
         }
 
