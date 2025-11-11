@@ -10,7 +10,7 @@ namespace lab6_7_test
         {
             var p1 = new Product("Яблука", 25, "Перший", 10);
             var p2 = new Product("Груші", 30, "Перший", 20);
-            var comparer = new ProductComparerByPrice();
+            var comparer = new ProductComparer();
 
             Assert.IsTrue(comparer.Compare(p1, p2) < 0);
             Assert.IsTrue(comparer.Compare(p2, p1) > 0);
@@ -22,7 +22,7 @@ namespace lab6_7_test
         {
             var p1 = new Product("Яблука", 25, "Перший", 10);
             var p2 = new Product("Груші", 30, "Другий", 10);
-            var comparer = new ProductComparerByPrice();
+            var comparer = new ProductComparer();
 
             Assert.AreEqual(0, comparer.Compare(p1, p2));
         }
@@ -33,7 +33,7 @@ namespace lab6_7_test
         {
             Product p1 = null;
             var p2 = new Product("Груші", 30, "Перший", 15);
-            var comparer = new ProductComparerByPrice();
+            var comparer = new ProductComparer();
 
             Assert.AreEqual(0, comparer.Compare(p1, p2));
         }
@@ -44,7 +44,7 @@ namespace lab6_7_test
         {
             var p1 = new Product("Яблука", 25, "Перший", 10);
             Product p2 = null;
-            var comparer = new ProductComparerByPrice();
+            var comparer = new ProductComparer();
 
             Assert.AreEqual(0, comparer.Compare(p1, p2));
         }
@@ -55,7 +55,7 @@ namespace lab6_7_test
         {
             Product p1 = null;
             Product p2 = null;
-            var comparer = new ProductComparerByPrice();
+            var comparer = new ProductComparer();
 
             Assert.AreEqual(0, comparer.Compare(p1, p2), "Порівняння двох null-об’єктів має повертати 0.");
         }

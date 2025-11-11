@@ -46,8 +46,16 @@ namespace lab5
         // Сортування за кількістю
         public void SortByQuantity()
         {
-            var sortedProducts = new List<Product>(_allProducts);
-            sortedProducts.Sort((x, y) => x.Quantity.CompareTo(y.Quantity));
+            //var sortedProducts = new List<Product>(_allProducts);
+
+            //var comparer = new ProductComparer();
+
+            //sortedProducts.Sort(comparer);
+
+            var sortedProducts = _allProducts
+                .OrderBy(p => p.Quantity)
+                .ToList();
+
             UpdateVisibleCollection(sortedProducts);
         }
 
@@ -88,5 +96,51 @@ namespace lab5
                 UpdateVisibleCollection(_allProducts);
             }
         }
+
+
+        //нові
+        // всі продукти з такою назвою
+        public void FilterByName(string name)
+        {
+            var filtered = _allProducts
+                .Where(p => string.Equals(p.Type, name, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            UpdateVisibleCollection(filtered);
+        }
+
+
+        //Групування продуктів за сортом
+
+        public void GroupByGrade()
+        {
+            var grouped = _allProducts
+                .OrderBy(p => p.Grade)
+                .ToList();
+
+            UpdateVisibleCollection(grouped);
+        }
+
+        //Загальна кількість всіх продуктів
+        public int TotalQuantity()
+        {
+            return _allProducts.Sum(p => p.Quantity);
+        }
+
+        // Загальна вартість всіх продуктів
+        public double TotalPrice()
+        {
+            return _allProducts.Sum(p => p.Price * p.Quantity);
+        }
+
+        // Середня ціна продукту
+        public double AveragePrice(string name)
+        {
+            var filtered = _allProducts
+                .Where(p => string.Equals(p.Type, name, StringComparison.OrdinalIgnoreCase));
+            if (!filtered.Any()) return 0;
+            return filtered.Average(p => p.Price);
+        }
+
     }
 }

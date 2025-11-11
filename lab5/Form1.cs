@@ -114,5 +114,41 @@ namespace lab5
                 MessageBox.Show($"Помилка збереження: {ex.Message}", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        //фільтрація за назвою
+        private void Filternew_Click(object sender, EventArgs e)
+        {
+            string productName = filtertype.Text;
+            if (!string.IsNullOrWhiteSpace(productName))
+            {
+                _catalog.FilterByName(productName);
+            }
+        }
+
+        // середня ціна продукту
+        private void aprice_Click(object sender, EventArgs e)
+        {
+            string productName = filtertype.Text;
+            if (!string.IsNullOrWhiteSpace(productName))
+            {
+                avprice.Text = _catalog.AveragePrice(productName).ToString();
+
+            }
+        }
+
+        private void groupby_Click(object sender, EventArgs e)
+        {
+            _catalog.GroupByGrade();
+        }
+
+        private void tquantity_Click(object sender, EventArgs e)
+        {
+            allquantity.Text = _catalog.TotalQuantity().ToString();
+        }
+
+        private void tprice_Click(object sender, EventArgs e)
+        {
+            allprice.Text = _catalog.TotalPrice().ToString();
+        }
     }
 }

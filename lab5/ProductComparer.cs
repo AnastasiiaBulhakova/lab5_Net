@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace lab5
 {
-    public class ProductComparerByPrice : IComparer<Product>
+    public class ProductComparer : IComparer<Product>
     {
         public int Compare(Product x, Product y)
         {

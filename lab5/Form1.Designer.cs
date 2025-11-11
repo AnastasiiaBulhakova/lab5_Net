@@ -46,6 +46,15 @@
             resert = new Button();
             load = new Button();
             save = new Button();
+            Filternew = new Button();
+            filtertype = new TextBox();
+            groupby = new Button();
+            tquantity = new Button();
+            tprice = new Button();
+            aprice = new Button();
+            avprice = new Label();
+            allquantity = new Label();
+            allprice = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)fiter).BeginInit();
             SuspendLayout();
@@ -212,11 +221,101 @@
             save.UseVisualStyleBackColor = true;
             save.Click += save_Click;
             // 
+            // Filternew
+            // 
+            Filternew.Location = new Point(39, 472);
+            Filternew.Name = "Filternew";
+            Filternew.Size = new Size(143, 34);
+            Filternew.TabIndex = 19;
+            Filternew.Text = "Фільтрувати за";
+            Filternew.UseVisualStyleBackColor = true;
+            Filternew.Click += Filternew_Click;
+            // 
+            // filtertype
+            // 
+            filtertype.Location = new Point(221, 472);
+            filtertype.Name = "filtertype";
+            filtertype.Size = new Size(150, 31);
+            filtertype.TabIndex = 20;
+            // 
+            // groupby
+            // 
+            groupby.Location = new Point(39, 541);
+            groupby.Name = "groupby";
+            groupby.Size = new Size(248, 32);
+            groupby.TabIndex = 21;
+            groupby.Text = "Групувати за сортом";
+            groupby.UseVisualStyleBackColor = true;
+            groupby.Click += groupby_Click;
+            // 
+            // tquantity
+            // 
+            tquantity.Location = new Point(328, 540);
+            tquantity.Name = "tquantity";
+            tquantity.Size = new Size(258, 34);
+            tquantity.TabIndex = 22;
+            tquantity.Text = "Загальна кількість продуктів";
+            tquantity.UseVisualStyleBackColor = true;
+            tquantity.Click += tquantity_Click;
+            // 
+            // tprice
+            // 
+            tprice.Location = new Point(682, 540);
+            tprice.Name = "tprice";
+            tprice.Size = new Size(258, 34);
+            tprice.TabIndex = 23;
+            tprice.Text = "Загальна вартість продуктів";
+            tprice.UseVisualStyleBackColor = true;
+            tprice.Click += tprice_Click;
+            // 
+            // aprice
+            // 
+            aprice.Location = new Point(439, 472);
+            aprice.Name = "aprice";
+            aprice.Size = new Size(251, 34);
+            aprice.TabIndex = 24;
+            aprice.Text = "Середня ціна продукту";
+            aprice.UseVisualStyleBackColor = true;
+            aprice.Click += aprice_Click;
+            // 
+            // avprice
+            // 
+            avprice.AutoSize = true;
+            avprice.Location = new Point(746, 475);
+            avprice.Name = "avprice";
+            avprice.Size = new Size(0, 25);
+            avprice.TabIndex = 25;
+            // 
+            // allquantity
+            // 
+            allquantity.AutoSize = true;
+            allquantity.Location = new Point(609, 545);
+            allquantity.Name = "allquantity";
+            allquantity.Size = new Size(0, 25);
+            allquantity.TabIndex = 26;
+            // 
+            // allprice
+            // 
+            allprice.AutoSize = true;
+            allprice.Location = new Point(963, 545);
+            allprice.Name = "allprice";
+            allprice.Size = new Size(0, 25);
+            allprice.TabIndex = 27;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1069, 461);
+            ClientSize = new Size(1173, 614);
+            Controls.Add(allprice);
+            Controls.Add(allquantity);
+            Controls.Add(avprice);
+            Controls.Add(aprice);
+            Controls.Add(tprice);
+            Controls.Add(tquantity);
+            Controls.Add(groupby);
+            Controls.Add(filtertype);
+            Controls.Add(Filternew);
             Controls.Add(save);
             Controls.Add(load);
             Controls.Add(resert);
@@ -263,5 +362,14 @@
         private Button resert;
         private Button load;
         private Button save;
+        private Button Filternew;
+        private TextBox filtertype;
+        private Button groupby;
+        private Button tquantity;
+        private Button tprice;
+        private Button aprice;
+        private Label avprice;
+        private Label allquantity;
+        private Label allprice;
     }
 }
